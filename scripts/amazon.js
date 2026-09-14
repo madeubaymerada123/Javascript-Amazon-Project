@@ -90,8 +90,13 @@ document.querySelectorAll('.js-add-to-cart')
   });
 
 
-  // WHAT WE DID:
-  // 1.we save the data using javascript in products.js
-  // 2.we generate the html from javascript
-  // 3.we make it interactive using document querySelector
-  // 4.we calculate quantity for the cart
+  // WHAT WE DID 14/09/2026:
+// 1. started the final Amazon project 
+// 2. set up and learned Git 
+// 3. learned the main idea of JavaScript
+//   - save the data 
+//   - generate the html 
+//   - make it interactive
+// 4. created list of products on homepage
+// 5. made the 'Add to Cart' button interactive
+// 6. made the cart quantity interactive
