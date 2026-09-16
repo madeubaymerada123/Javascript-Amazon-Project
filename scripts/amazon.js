@@ -1,6 +1,9 @@
+import { cart } from "../data/cart";
+
+
 let productsHTML = '';
 
-products.forEach((product)=> {
+products.forEach((product) => {
   productsHTML += `
     <div class="product-container">
       <div class="product-image-container">
@@ -21,7 +24,7 @@ products.forEach((product)=> {
       </div>
 
       <div class="product-price">
-        ${(product.priceCents / 100).toFixed(2)}
+        $${(product.priceCents / 100).toFixed(2)}
       </div>
 
       <div class="product-quantity-container">
@@ -54,49 +57,37 @@ products.forEach((product)=> {
   `;
 });
 
-document.querySelector('.js-products-grid')
-  .innerHTML = productsHTML;
+document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 document.querySelectorAll('.js-add-to-cart')
-  .forEach( (button) => {
+  .forEach((button) => {
     button.addEventListener('click', () => {
       const productId = button.dataset.productId;
+
       let matchingItem;
 
       cart.forEach((item) => {
-        if(productId === item.productId){
+        if (productId === item.productId) {
           matchingItem = item;
         }
       });
 
-      if(matchingItem) {
+      if (matchingItem) {
         matchingItem.quantity += 1;
-      } else{
+      } else {
         cart.push({
-        productId: productId,
-        quantity: 1
-      });
+          productId: productId,
+          quantity: 1
+        });
       }
 
       let cartQuantity = 0;
+
       cart.forEach((item) => {
         cartQuantity += item.quantity;
-      })
+      });
+
       document.querySelector('.js-cart-quantity')
         .innerHTML = cartQuantity;
-      
-      
     });
   });
-
-
-  // WHAT WE DID 14/09/2026:
-// 1. started the final Amazon project 
-// 2. set up and learned Git 
-// 3. learned the main idea of JavaScript
-//   - save the data 
-//   - generate the html 
-//   - make it interactive
-// 4. created list of products on homepage
-// 5. made the 'Add to Cart' button interactive
-// 6. made the cart quantity interactive
