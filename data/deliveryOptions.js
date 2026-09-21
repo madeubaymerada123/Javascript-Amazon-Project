@@ -1,3 +1,5 @@
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+
 export const deliveryOptions = [{
   id: '1',
   deliveryDays: 7,
@@ -22,4 +24,28 @@ export function getDeliveryOption(deliveryOptionId) {
   });
 
   return deliveryOption || deliveryOptions[0];
+}
+
+function isWeekend(date){
+  const dayOfWeek = date.format('dddd');
+  return dayOfWeek === 'Saturday' || dayOfWeek === 'Sunday';
+}
+
+
+export function calculateDeliveryDate(deliveryOption) {
+  let remainingDays = deliveryOption.deliveryDays;
+  let deliveryDate = dayjs();
+
+  // Loop through days until all delivery days are used up
+  while (remainingDays > 0) {
+    deliveryDate = deliveryDate.add(1, 'day');
+
+    // If it's a business day (not a weekend), decrease remaining days
+    if (!isWeekend(deliveryDate)) {
+      remainingDays--;
+    }
+  }
+
+  const dateString = deliveryDate.format('dddd, MMMM D');
+  return dateString;
 }
