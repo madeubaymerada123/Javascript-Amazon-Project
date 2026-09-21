@@ -1,3 +1,15 @@
+export function getProduct(productId) {
+  let matchingProduct;
+
+  products.forEach((product) => {
+    if (product.id === productId) {
+      matchingProduct = product;
+    }
+  });
+
+  return matchingProduct;
+}
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -656,25 +668,5 @@ export const products = [
       "apparel",
       "mens"
     ]
-  },
-  {
-    id: "id1",
-    image: "images/products/backpack.jpg",
-    name: "This is backpack",
-    rating: {
-      stars: 4.5,
-      count: 1009
-    },
-    priceCents: 2400,
-  },
-  {
-    id: "id2",
-    image: "images/products/umbrella.jpg",
-    name: "This is umbrella",
-    rating: {
-      stars: 3,
-      count: 21
-    },
-    priceCents: 1780,
   }
 ];
