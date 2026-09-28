@@ -1,3 +1,5 @@
+import {validDeliveryOption} from './deliveryOptions.js'
+
 export let cart;
 loadFromStorage();
 
@@ -85,13 +87,21 @@ export function updateQuantity(productId, newQuantity){
 
 export function updateDeliveryOption(productId, deliveryOptionId){
   let matchingItem;
-
   cart.forEach((cartItem) => {
     if (productId === cartItem.productId) {
       matchingItem = cartItem;
     }
+    return;
   });
 
+  //16l modify updateDeliveryOption so if productId that is not in the cart, the function will return and do nothing (not update cart)
+  if(!matchingItem){
+    return;
+  }
+
+  if(!validDeliveryOption(deliveryOptionId)){
+    return;
+  }
   matchingItem.deliveryOptionId = deliveryOptionId;
 
   saveToStorage();
